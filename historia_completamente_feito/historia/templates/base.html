@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Artigos{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">&#9776; Fechar</button>
+        <h2>Seculos</h2>
+        <ul>
+            <li>
+                <a href="{{ url_for('index') }}">Geral</a>
+            </li>
+        </ul>
+        <div class="sidebar-columns">
+            <div class="sidebar-column">
+                <ul>
+                    {% for sec in range(-30, 1) %}
+                        <li>
+                            <a href="{{ url_for('artigos_por_seculo', seculo=sec) }}">
+                                {{ sec }} {{ 'a.C.' if sec < 0 else 'd.C.' }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="sidebar-column">
+                <ul>
+                    {% for sec in range(1, 20) %}
+                        <li>
+                            <a href="{{ url_for('artigos_por_seculo', seculo=sec) }}">
+                                {{ sec }} d.C.
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+        <!-- Botão de Menu para abrir a sidebar -->
+        <button class="open-btn" onclick="toggleSidebar()">&#9776; Menu</button>
+
+        {% block content %}
+        <!-- Conteúdo específico de cada página será inserido aqui -->
+        {% endblock %}
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

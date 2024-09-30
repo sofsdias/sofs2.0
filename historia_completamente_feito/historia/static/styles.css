@@ -1,0 +1,204 @@
+/* Estilo básico para o corpo da página */
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3ece4;
+    color: #333;
+}
+
+/* Estilo para a barra lateral */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #4b2e11;
+    color: #fdf5e6;
+    padding-top: 5px;
+    overflow-y: auto;
+    transition: width 0.3s;
+    z-index: 2;
+    padding-bottom: 20px;
+}
+
+/* Botão de abrir e fechar a barra lateral */
+.sidebar .close-btn {
+    font-size: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #fdf5e6;
+    margin: 0 15px;
+    text-align: left;
+    padding: 5px 0;
+}
+
+/* Estilo para o botão de abrir a sidebar */
+.open-btn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #8b4513;
+    color: #fdf5e6;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.open-btn:hover {
+    background-color: #b5651d;
+}
+
+/* Contêiner de navegação para alinhamento */
+.nav-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para a barra de pesquisa */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-container input[type="text"] {
+    width: calc(100% - 120px);
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.search-container button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #8b4513;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #b5651d;
+}
+
+/* Layout da barra lateral dividido em duas colunas */
+.sidebar-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+/* Cada coluna da barra lateral */
+.sidebar-column {
+    width: 45%;
+    padding-right: 5px;
+}
+
+/* Lista de navegação na barra lateral */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 5px 0;
+}
+
+/* Links da barra lateral */
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fdf5e6;
+    font-size: 16px;
+    display: block;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: #ffcc80;
+}
+
+/* Estilo para o conteúdo principal */
+.main {
+    margin-left: 0;
+    padding: 20px;
+    transition: margin-left 0.3s;
+    margin-top: 50px;
+}
+
+/* Esconde o botão de menu quando a sidebar estiver aberta */
+.sidebar-open #menu-button {
+    display: none;
+}
+
+/* Estilo para o título e cabeçalhos */
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #8b4513;
+}
+
+/* Estilo para os artigos */
+.articles-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.article {
+    background-color: #ffffff;
+    border: 2px solid #b8860b;
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(25% - 20px);
+    box-sizing: border-box;
+}
+
+.article-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+.article-content h3 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+}
+
+.article-content p {
+    font-size: 14px;
+    color: #3e3e3e;
+    margin: 5px 0;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+    .main {
+        margin-left: 0;
+    }
+    
+    .sidebar {
+        width: 200px;
+    }
+
+    .articles-grid {
+        flex-direction: column;
+    }
+
+    .article {
+        width: 100%;
+    }
+}

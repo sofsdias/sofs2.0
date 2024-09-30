@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">&#9776; Fechar</button>
+        <h2>Seculos</h2>
+        <ul>
+            <li>
+                <a href="{{ url_for('index') }}">Geral</a>
+            </li>
+        </ul>
+        <div class="sidebar-columns">
+            <div class="sidebar-column">
+                <ul>
+                    {% for sec in range(-30, 1) %}
+                        <li>
+                            <a href="{{ url_for('artigos_por_seculo', seculo=sec) }}">
+                                {{ sec }} {{ 'a.C.' if sec < 0 else 'd.C.' }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="sidebar-column">
+                <ul>
+                    {% for sec in range(1, 20) %}
+                        <li>
+                            <a href="{{ url_for('artigos_por_seculo', seculo=sec) }}">
+                                {{ sec }} d.C.
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+        <!-- Contêiner de navegação com o botão de menu e a barra de pesquisa -->
+        <div class="nav-container">
+            <button class="open-btn" id="menu-button" onclick="toggleSidebar()">&#9776; Menu</button>
+            <div class="search-container">
+                <form method="post">
+                    <input type="text" name="pesquisa" placeholder="Pesquisar artigos...">
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+
+        <h2>Artigos encontrados</h2>
+
+        <div class="articles-grid">
+            {% if artigos %}
+                {% for artigo in artigos %}
+                    <div class="article">
+                        {% if artigo['imagem_base64'] %}
+                            <div class="article-image">
+                                <img src="{{ artigo['imagem_base64'] }}" alt="Imagem do artigo">
+                            </div>
+                        {% endif %}
+                        <div class="article-content">
+                            <h3>
+                                <a href="{{ url_for('mostrar_artigo', artigo_id=artigo['id']) }}" target="_blank">
+                                    {{ artigo['titulo'] }}
+                                </a>
+                            </h3>
+                            <p>Autor: {{ artigo['nome_do_autor'] }}</p>
+                            <p>Publicado em: {{ artigo['data_criacao'].strftime('%d/%m/%Y') }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Nenhum artigo encontrado.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
